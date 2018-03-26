@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/sistema_vendas.iml" filepath="$PROJECT_DIR$/sistema_vendas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web-service_venda/web-service_venda.iml" filepath="$PROJECT_DIR$/web-service_venda/web-service_venda.iml" />
+    </modules>
+  </component>
+</project>
