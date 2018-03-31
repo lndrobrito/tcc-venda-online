@@ -30,7 +30,7 @@ public class ClienteController {
 
 	@Autowired
 	ClienteService cliService;
-
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Cliente> addCliente(@RequestBody Cliente cliente) {
 		cliService.save(cliente);
@@ -61,6 +61,17 @@ public class ClienteController {
 		}
 		logger.debug("Found Cliente:: " + cliente);
 		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/search/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<Cliente>> findByName(@PathVariable("id") String id) {
+		List<Cliente> clientes = cliService.findByName(id);
+		if (clientes == null || clientes.isEmpty()) {
+			logger.debug("Cliente with id " + id + " does not exists");
+			return new ResponseEntity<List<Cliente>>(HttpStatus.NOT_FOUND);
+		}
+		logger.debug("Found Cliente:: " + clientes.toString());
+		return new ResponseEntity<List<Cliente>>(clientes, HttpStatus.OK);
 	}
 
 

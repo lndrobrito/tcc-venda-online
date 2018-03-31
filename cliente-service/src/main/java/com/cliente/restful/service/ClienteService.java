@@ -1,5 +1,7 @@
 package com.cliente.restful.service;
 
+import java.util.List;
+
 import com.cliente.restful.model.Cliente;
 
 /**
@@ -8,5 +10,8 @@ import com.cliente.restful.model.Cliente;
  *
  */
 public interface ClienteService extends CRUDService<Cliente> {
+	
+	List<Cliente> findByName(String searchTerm);
+
 
 }

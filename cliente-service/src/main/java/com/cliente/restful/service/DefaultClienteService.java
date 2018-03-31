@@ -3,8 +3,10 @@ package com.cliente.restful.service;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cliente.restful.model.Cliente;
 import com.cliente.restful.repository.ClienteRepository;
@@ -16,6 +18,9 @@ import com.cliente.restful.repository.ClienteRepository;
  */
 @Service
 public class DefaultClienteService implements ClienteService {
+	
+	final static Logger logger = Logger.getLogger(DefaultClienteService.class);
+
 
 	@Autowired
 	private ClienteRepository clienteRepository;
@@ -39,5 +44,17 @@ public class DefaultClienteService implements ClienteService {
 	public void delete(Serializable id) {
 		clienteRepository.delete((Long) id);
 	}
+	
+    @Transactional(readOnly = true)
+    @Override
+    public List<Cliente> findByName(String searchTerm) {
+    	logger.debug("Finding todo entries by search term: {} and page request: {}"+ searchTerm);
+
+        List<Cliente> searchResultPage = clienteRepository.findByName(searchTerm);
+
+        logger.debug("Found {"+searchResultPage.size()+"} todo entries");
+
+        return searchResultPage;
+    }
 
 }
