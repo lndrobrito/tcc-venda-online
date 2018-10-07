@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Clientes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-searchbar [(ngModel)]="terms" placeholder="pesquisar cliente"></ion-searchbar>
+
+
+  <ion-scroll scrollX="true">
+  </ion-scroll>
+
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let mycliente of MyCliente ">
+      <ion-item (click)="openEditUser(mycliente.nome)">
+        <h2>{{ mycliente.nome}}</h2>
+      </ion-item>
+
+      <ion-item-options side="left">
+        <button ion-button color="primary" (click)="openEditUser(mycliente.nome)">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="danger" (click)="deleteUser(mycliente)">
+          <ion-icon name="trash"></ion-icon>
+          Excluir
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+
+
+  <ion-fab right bottom>
+    <button ion-fab color="light" (click)="openCreateAccount()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>

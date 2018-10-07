@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+    <ion-item>
+      <ion-label floating>E-mail</ion-label>
+      <ion-input formControlName="username" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="authForm.controls.username.hasError('required') && authForm.controls.username.touched">
+      <p>Campo username é obrigatorio!</p>
+    </ion-item>
+    <ion-item *ngIf="authForm.controls.username.hasError('email') && authForm.controls.username.touched">
+      <p>Digite um endereço de e-mail!</p>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="authForm.controls.password.hasError('required') && authForm.controls.password.touched">
+      <p>Campo password é obrigatorio!</p>
+    </ion-item>
+    <ion-item *ngIf="authForm.controls.password.hasError('minlength') && authForm.controls.password.touched">
+      <p>Senha deve ter ao menos 8 caracteres!</p>
+    </ion-item>
+
+    <button ion-button full color="primary" [disabled]="!authForm.valid" style="margin-top: 20px;" type="submit">Login</button>
+  </form>
+</ion-content>
