@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cliente.restful.model.Cliente;
+import com.cliente.restful.model.Login;
 import com.cliente.restful.repository.ClienteRepository;
 
 /**
@@ -48,6 +49,10 @@ public class DefaultClienteService implements ClienteService {
     @Transactional(readOnly = true)
     @Override
     public List<Cliente> findByName(String searchTerm) {
+    	
+    	searchTerm = searchTerm.toLowerCase();
+    	
+    	System.out.println(searchTerm);
     	logger.debug("Finding todo entries by search term: {} and page request: {}"+ searchTerm);
 
         List<Cliente> searchResultPage = clienteRepository.findByName(searchTerm);
@@ -56,5 +61,27 @@ public class DefaultClienteService implements ClienteService {
 
         return searchResultPage;
     }
+    
+	/**
+	 * Verifica se cliente esta cadastrado 
+	 * @param login
+	 * @return
+	 */
+	public boolean getClienteEmailSenha(Login login) {
+
+		
+			System.out.println(login.email + login.password);
+
+			Cliente c = clienteRepository.findByEmail(login.getEmail());
+
+			if (c == null) {
+
+				return false;
+			} else if (!c.getSenha().equals(login.getPassword())) {
+				return false;
+			}		
+
+		return true;
+	}
 
 }

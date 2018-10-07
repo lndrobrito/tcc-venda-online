@@ -19,4 +19,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
 	@Query("SELECT c FROM Cliente c where LOWER(c.nome) like :key%")
     public List<Cliente> findByName(@Param("key") String key);
+	
+	public Cliente findByEmail(String email);
+
 }
