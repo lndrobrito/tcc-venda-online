@@ -33,6 +33,6 @@ export class HomePage {
   }
 
   openListUsers() {
-    this.nav.push('UserListPage');
+    this.nav.push('ListaClientePage');
   }
 }

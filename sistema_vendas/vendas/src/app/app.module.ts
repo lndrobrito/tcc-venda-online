@@ -22,7 +22,7 @@ import { ClienteProvider } from '../providers/cliente/cliente';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

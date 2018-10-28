@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, InfiniteScroll } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
-import {ClienteProvider} from "../../providers/cliente/cliente";
+import {ClienteProvider} from './../../providers/cliente/cliente';
 
 
 /**

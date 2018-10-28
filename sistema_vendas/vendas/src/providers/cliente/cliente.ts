@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/map';
 
 /*
  Generated class for the ClienteProvider provider.
@@ -10,11 +11,29 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ClienteProvider {
 
-  private API_URL = 'https://fast-tor-38780.herokuapp.com/'
+  private API_URL = 'https://reqres.in/api/'
 
   constructor(public http: HttpClient) {
     console.log('Hello ClienteProvider Provider');
   }
+
+  createAccount(email: string, password: string) {
+    return new Promise((resolve, reject) => {
+      var data = {
+        email: email,
+        password: password
+      };
+
+      this.http.post(this.API_URL + 'register', data)
+        .subscribe((result: any) => {
+            resolve(result.json());
+          },
+          (error) => {
+            reject(error.json());
+          });
+    });
+  }
+
   getAll(page: number) {
     return new Promise((resolve, reject) => {
 
