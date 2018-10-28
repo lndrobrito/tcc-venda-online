@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
 import { UsersProvider } from '../providers/users/users';
 import { SearchPipe } from '../pipes/search/search';
 
@@ -17,7 +18,8 @@ import { HttpModule } from '@angular/http';
   declarations: [
     MyApp,
     SearchPipe,
-    LoginPage
+    LoginPage,
+    HomePage
   ],
   imports: [
     BrowserModule,
